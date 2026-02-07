@@ -9,5 +9,4 @@ Then, go to settings, privacy and security, scroll to the bottom, and click allo
 YOU ONLY HAVE TO DO THIS ONCE! From that point, it runs normally. :D
 It's unfortunate, but I don't know if there's a way around it without paying.
 
-
-
+Why the file size? I'm using Electron, which is notoriously large for file sizes due to a bundled version of Chromium. The app's updates won't add much storage.
