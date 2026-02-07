@@ -1,3 +1,5 @@
+//Portions of this code were originally created by: https://randomnerdtutorials.com/esp32-dht11-dht22-temperature-humidity-web-server-arduino-ide/ and adapted/modified by CapyDesigns/CapyGamesXD
+
 #include "WiFi.h"
 #include "ESPAsyncWebServer.h"
 #include <Adafruit_Sensor.h>
