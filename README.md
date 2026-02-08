@@ -17,7 +17,10 @@ YOU ONLY HAVE TO DO THIS ONCE! From that point, it runs normally. :D
 It's unfortunate, but I don't know if there's a way around it without paying.
 Maybe in the future I could get an account...
 
-2: (the fancy method) type this command, making sure to edit the path to your .app file: 'xattr -d com.apple.quarantine <PATH>'
+2: (the fancy method) type this command, making sure to edit the path to your .app file: 'xattr -d com.apple.quarantine <PATH>'.
+
+
+
 IP Page
 <img width="1312" height="912" alt="Screenshot 2026-02-08 at 11 08 00" src="https://github.com/user-attachments/assets/397447b4-fa65-4f77-90ca-b386b1f7c782" />
 
