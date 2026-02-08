@@ -5,10 +5,14 @@ To get started, upload the microcontroller code from [here](Microcontroller.ino)
 This code is for a DHT22 sensor, but can be easily adapted to other sensors. 
 
 
+# Website
+
 On Chrome, or other Chromium-based browsers, you can go to my website to see the data! 
 [Clymit Site](https://clymit.capydesigns.com)
 This feature may be removed in the future, as Chrome may update their cross-origin policies.
 
+
+# App
 Recommended for Mac:
 
 Or, download the app from [my website](https://appiibara.capydesigns.com). 
@@ -28,6 +32,17 @@ Maybe in the future I could get an account...
 2: (the fancy method) type this command, making sure to edit the path to your .app file: 'xattr -d com.apple.quarantine <PATH>'.
 
 
+# Model Files
+
+https://makerworld.com/en/models/2369922-clymit-open-source-weather-station#profileId-2593814
+
+
+![IMG_8678](https://github.com/user-attachments/assets/5faf189b-ea41-4146-8584-0f3bf682c812)
+
+![IMG_8682](https://github.com/user-attachments/assets/c8fad536-fdc0-4b64-a135-644063e8e36a)
+
+
+# App photos
 
 IP Page
 <img width="1312" height="912" alt="Screenshot 2026-02-08 at 11 08 00" src="https://github.com/user-attachments/assets/397447b4-fa65-4f77-90ca-b386b1f7c782" />
