@@ -6,7 +6,7 @@ This code is for a DHT22 sensor, but can be easily adapted to other sensors.
 
 
 On Chrome, or other Chromium-based browsers, you can go to my website to see the data! 
-[Clymit Site](clymit.capydesigns.com)
+[Clymit Site](https://clymit.capydesigns.com)
 This feature may be removed in the future, as Chrome may update their cross-origin policies.
 
 Recommended for Mac:
