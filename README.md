@@ -9,7 +9,9 @@ This code is for a DHT22 sensor, but can be easily adapted to other sensors.
 
 On Chrome, or other Chromium-based browsers, you can go to my website to see the data! 
 [Clymit Site](https://clymit.capydesigns.com)
-This feature may be removed in the future, as Chrome may update their cross-origin policies.
+
+
+(This feature may be removed in the future, as Chrome may update their cross-origin policies.)
 
 
 # App
@@ -29,7 +31,9 @@ YOU ONLY HAVE TO DO THIS ONCE! From that point, it runs normally. :D
 It's unfortunate, but I don't know if there's a way around it without paying.
 Maybe in the future I could get an account...
 
-2: (the fancy method) type this command, making sure to edit the path to your .app file: 'xattr -d com.apple.quarantine <PATH>'.
+2: (the fancy method) type this command, making sure to edit the path to your .app file: 
+
+'xattr -d com.apple.quarantine <PATH>'.
 
 
 # Model Files
