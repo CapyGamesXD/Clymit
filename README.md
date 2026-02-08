@@ -13,7 +13,8 @@ Why the file size? I'm using Electron, which is notoriously large for file sizes
 
 
 IP Page
-<img width="1312" height="912" alt="Screenshot 2026-02-08 at 11 08 07" src="https://github.com/user-attachments/assets/5daab3e9-3809-4fbc-9b48-25f82575db9a" />
+<img width="1312" height="912" alt="Screenshot 2026-02-08 at 11 08 00" src="https://github.com/user-attachments/assets/397447b4-fa65-4f77-90ca-b386b1f7c782" />
 
 Home Page
-<img width="1312" height="912" alt="Screenshot 2026-02-08 at 11 08 00" src="https://github.com/user-attachments/assets/397447b4-fa65-4f77-90ca-b386b1f7c782" />
+<img width="1312" height="912" alt="Screenshot 2026-02-08 at 11 08 07" src="https://github.com/user-attachments/assets/5daab3e9-3809-4fbc-9b48-25f82575db9a" />
+
