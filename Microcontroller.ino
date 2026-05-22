@@ -13,8 +13,8 @@ Adafruit_BMP280 bmp; // I2C Interface
 
                   
 //CHANGE THE PASSWORD TO FIT YOUR INSTANCE! 
-String ssid = "WIFI_SSID_HERE";
-String password = "WIFI_PASSWORD_HERE";
+String ssid = "SSID";
+String password = "PASSWORD";
 
 
 
@@ -47,6 +47,7 @@ double altitude = bmp.readAltitude(1023);
 
   //Post the header and the data
   server.sendHeader("Content-Type", "application/json");
+  server.sendHeader("Access-Control-Allow-Origin", "*");
   server.send(200, "application/json", jsonString);
 
   
@@ -68,7 +69,6 @@ if (!bmp.begin(0x76)) {
   }
 
 
-  //Credit to 'https://projecthub.arduino.cc/SurtrTech/bmp280-measure-temperature-pressure-and-altitude-6002cd' for this default config code alongside other snippets!
 bmp.setSampling(Adafruit_BMP280::MODE_NORMAL,     /* Operating Mode. */
                   Adafruit_BMP280::SAMPLING_X2,     /* Temp. oversampling */
                   Adafruit_BMP280::SAMPLING_X16,    /* Pressure oversampling */
