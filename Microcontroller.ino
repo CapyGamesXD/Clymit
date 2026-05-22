@@ -1,91 +1,105 @@
-//Portions of this code were originally created by: https://randomnerdtutorials.com/esp32-dht11-dht22-temperature-humidity-web-server-arduino-ide/ and adapted/modified by CapyDesigns/CapyGamesXD
+#include <Arduino.h>
+#include <WiFi.h>
+#include <WebServer.h>
+#include <ArduinoJson.h>
+#include  <Adafruit_BMP280.h>
+#include <ESPmDNS.h>
 
-#include "WiFi.h"
-#include "ESPAsyncWebServer.h"
-#include <Adafruit_Sensor.h>
-#include <DHT.h>
-
-// Replace with your network credentials
-const char* ssid = "Your Wi-Fi SSID";
-const char* password = "Your Password";
-
-#define DHTPIN 23 
+Adafruit_BMP280 bmp; // I2C Interface
 
 
-#define DHTTYPE    DHT22  
 
-DHT dht(DHTPIN, DHTTYPE);
+//Default config stuff XD
 
-AsyncWebServer server(80);
-
-String readDHTTemperature() {
-
-  float t = dht.readTemperature();
-
-  if (isnan(t)) {    
-    Serial.println("Failed to read from DHT sensor!");
-    return "--";
-  }
-  else {
-    Serial.println(t);
-    return String(t);
-  }
-}
-
-String readDHTHumidity() {
-  float h = dht.readHumidity();
-  if (isnan(h)) {
-    Serial.println("Failed to read from DHT sensor!");
-    return "--";
-  }
-  else {
-    Serial.println(h);
-    return String(h);
-  }
-}
+                  
+//CHANGE THE PASSWORD TO FIT YOUR INSTANCE! 
+String ssid = "WIFI_SSID_HERE";
+String password = "WIFI_PASSWORD_HERE";
 
 
-String processor(const String& var){
-  //Serial.println(var);
-  if(var == "TEMPERATURE"){
-    return readDHTTemperature();
-  }
-  else if(var == "HUMIDITY"){
-    return readDHTHumidity();
-  }
-  return String();
-}
 
-void setup(){
 
-  Serial.begin(115200);
 
-  dht.begin();
-  
+//Initialise a web server 
+WebServer server(80);
+
+
+
+
+void handleWeather () {
+
+double temperature = bmp.readTemperature();
+double pressure = bmp.readPressure()/100;
+double altitude = bmp.readAltitude(1023); 
  
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
-    Serial.println("Connecting to WiFi..");
+
+
+ //Declare a new JSON document of 128 bytes (more than enough for basic weather stuff :D)
+  JsonDocument weatherDoc;
+
+  //Assign the document some classes! Add more if you want more info, super simple! :)
+  weatherDoc["temp"] = temperature;
+  weatherDoc["pressure"] = pressure;
+    weatherDoc["altitude"] = altitude;
+  //Convert the data to JSON
+  String jsonString;
+  serializeJson(weatherDoc, jsonString);
+
+  //Post the header and the data
+  server.sendHeader("Content-Type", "application/json");
+  server.send(200, "application/json", jsonString);
+
+  
+}
+
+
+void setup() {
+
+  //Start the console and delay 0.5 seconds to allow it to start properly.
+  Serial.begin(9600); 
+  delay(500); 
+
+
+  delay(2000);
+
+if (!bmp.begin(0x76)) {
+    Serial.println(F("Could not find a valid BMP280 sensor,  check wiring!"));
+    while (1);
   }
 
+
+  //Credit to 'https://projecthub.arduino.cc/SurtrTech/bmp280-measure-temperature-pressure-and-altitude-6002cd' for this default config code alongside other snippets!
+bmp.setSampling(Adafruit_BMP280::MODE_NORMAL,     /* Operating Mode. */
+                  Adafruit_BMP280::SAMPLING_X2,     /* Temp. oversampling */
+                  Adafruit_BMP280::SAMPLING_X16,    /* Pressure oversampling */
+                  Adafruit_BMP280::FILTER_X16,      /* Filtering. */
+                  Adafruit_BMP280::STANDBY_MS_500);  /* Standby time. */
+
+  //Connect it to WiFi
+  WiFi.begin(ssid, password);
+
+
+  //Check the Wi-Fi status, report connecting until it's connected.
+  while(WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.println("Awaiting wifi connection... ");
+  }
+  MDNS.begin("clymit");
+
+  //Assign the server to the 192.168.X.XXX/weather page
+  server.on("/", HTTP_GET, handleWeather);
+
+  //Begin
+  server.begin();
+
+  //Output the IP.
   Serial.println(WiFi.localIP());
 
-
-
-  DefaultHeaders::Instance().addHeader("Access-Control-Allow-Origin", "*");
-  DefaultHeaders::Instance().addHeader("Access-Control-Allow-Methods", "GET, POST, PUT");
-  DefaultHeaders::Instance().addHeader("Access-Control-Allow-Headers", "Content-Type");
-
-  server.on("/data", HTTP_GET, [](AsyncWebServerRequest *request){
-  String json = "{\"temperature\":" + readDHTTemperature() + ",\"humidity\":" + readDHTHumidity() + "}";
-  request->send(200, "application/json", json);
-});
-
-  // Start server
-  server.begin();
-}
  
-void loop(){
+}
 
+void loop() {
+
+  //If a client connects, handle it with server's built-in functions
+server.handleClient();
 }
